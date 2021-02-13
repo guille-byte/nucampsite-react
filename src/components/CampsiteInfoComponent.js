@@ -32,6 +32,11 @@ class CommentForm extends Component {
     }
 
     render() {
+        // Avoid compiler warnings about non-conforming Redux Form control names
+        const Select = Control.select;
+        const Text = Control.text;
+        const TextArea = Control.textarea;
+
         return (
             <React.Fragment>
                 <Button type="submit" color="primary" onClick={this.toggleModal} outline>
@@ -44,7 +49,7 @@ class CommentForm extends Component {
                         <LocalForm onSubmit={values => this.handleSubmit(values)}>
                             <div className="form-group">
                                 <Label htmlFor="rating">Rating</Label>
-                                <Control.select model=".rating" name="rating"
+                                <Select model=".rating" name="rating"
                                     className="form-control"
                                     defaultValue={5}>
                                     <option>1</option>
@@ -52,11 +57,11 @@ class CommentForm extends Component {
                                     <option>3</option>
                                     <option>4</option>
                                     <option>5</option>
-                                </Control.select>
+                                </Select>
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="author">Your Name</Label>
-                                <Control.text model=".author" id="author" name="author"
+                                <Text model=".author" id="author" name="author"
                                     placeholder="Your Name"
                                     className="form-control"
                                     validators={{
@@ -79,7 +84,7 @@ class CommentForm extends Component {
                             </div>
                             <div className="form-group">
                                 <Label htmlFor="text">Comment</Label>
-                                <Control.textarea model=".text" id="text" name="text"
+                                <TextArea model=".text" id="text" name="text"
                                     divs="6"
                                     className="form-control"
                                 />
